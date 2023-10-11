@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Mail\CandidateContacted;
+use App\Mail\CandidateHired;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Candidate;
 use App\Models\Company;
@@ -38,6 +38,9 @@ class CandidateController extends Controller
                 $company->decrement('coins', 5);
                 $candidate->contactedby = 1;
                 $candidate->save();
+
+                Mail::to($candidate->email)->send(new CandidateContacted($candidate));
+
                 return response()->json([
                     'message' => 'Mail Sent. Candidate Contacted.'
                 ], 200);
@@ -83,6 +86,9 @@ class CandidateController extends Controller
                 // The candidate has been hired.
                 $company->increment('coins', 5);
                 $candidate->save();
+                //Send Mail to candidate
+                Mail::to($candidate->email)->send(new CandidateHired($candidate));
+                //Send response and pop alert
                 return response()->json([
                     'message' => 'Mail Sent. Candidate Hired.'
                 ], 200);
@@ -99,7 +105,6 @@ class CandidateController extends Controller
             return response()->json([
                 'message' => 'Error: This candidate is already hired!'
             ], 200);
-            // The candidate has not been hired.
         }
 
 
