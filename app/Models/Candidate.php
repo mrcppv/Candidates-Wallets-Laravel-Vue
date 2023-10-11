@@ -14,7 +14,9 @@ class Candidate extends Model
         'email',
         'description',
         'strengths',
-        'soft_skills'
+        'soft_skills',
+        'hired',
+        'contactedby'
     ];
 
     public function strengths()
