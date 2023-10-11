@@ -3,7 +3,8 @@ WSL2 (Windows Subsystem for Linux version 2) is a new version of the architectur
 
 The feature runs an actual Linux kernel in this new version, which improves performance and app compatibility over the previous version while maintaining the same experience as the first release.
 
->**NOTE**To install WSL 2 on Windows 10 you need:
+>**NOTE**
+>To install WSL 2 on Windows 10 you need:
 >
 >Windows 10 May 2020 (2004), Windows 10 May 2019 (1903), or Windows 10 November 2019 (1909) or later
 >A computer with Hyper-V Virtualization support
@@ -58,7 +59,7 @@ Go to the project folder directory and make sure that the .env has the correct i
 Open your Windows Terminal as Administrator.
 Head over to the location where your Laravel project is stored.
 ```sh
-cd c:\wamp64\example-app
+cd c:\wamp64\www\example-app
  ```
 Only when setting up the project for the first time:
 ```php artisan migrate```
@@ -70,6 +71,26 @@ Initialize WSL in that location by running the following command:
 wsl
 ```
 
+>**NOTE**
+>SQL Lite
+>
+>To use a SQLite database in your Laravel project:
+>
+>Modify your .env :
+>```
+>DB_CONNECTION=sqlite
+>```
+>
+>Modify config/database.php:
+>```
+>connections => sqlite 'database' => __DIR__ . '/../storage/app/db.sqlite',
+>```
+>I always recommend to put your SQLite database in the storage directory, as this directory should be the only one where your web server will have write >permission.
+>
+>Finally, create the database file:
+>```
+>touch storage/app/db.sqlite
+>```
 
 # Step 4— Starting the services
 Laravel Sail provides a simple command-line interface for interacting with Laravel’s default Docker configuration.
