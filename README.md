@@ -53,6 +53,8 @@ That’s it! Now docker commands will work from Windows using the new WSL 2 engi
 # Step 3 — 
 Now that we have installed Docker Desktop successfully and Windows Subsystem for Linux 2 (WSL2) is installed and enabled, the next step is to select our Laravel project.
 
+Go to the project folder directory and make sure that the .env has the correct information. 
+
 Open your Windows Terminal as Administrator.
 Head over to the location where your Laravel project is stored.
 ```sh
@@ -71,12 +73,7 @@ wsl
 
 # Step 4— Starting the services
 Laravel Sail provides a simple command-line interface for interacting with Laravel’s default Docker configuration.
-
-After the project has been created, you can navigate to the application directory and start Laravel Sail.
-
-```sh
-cd c:\wamp64\example-app
- ```
+With docker running, run the following command in the linux terminal.
 ```sh
 ./vendor/bin/sail up
 ```
