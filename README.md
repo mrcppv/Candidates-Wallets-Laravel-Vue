@@ -90,6 +90,14 @@ This will run the docker-compose command which will pull the images and build th
 Run yarn to install all dependencies:
 `./scripts/yarn.sh install`
 
+After you have composer and all of the dependancies installed we can now start the dev server:
+`php aartisan key:generate`
+`npm install`
+
+The application needs to run above PHP v 8.1 so make sure to select it:
+`npm run dev C:\wamp64\bin\php\php8.1.13\php.exe artisan serve --host=127.0.0.1 --port=8000`
+
+
 Only when setting up the project for the first time:
 `php artisan migrate`
 `php artisan db:seed`
