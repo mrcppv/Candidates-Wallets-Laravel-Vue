@@ -77,23 +77,27 @@ class CandidateController extends Controller
         $company = Company::find(1);
 
 
-        if ($candidate->hired !== 1 && $candidate->contactedby === 1) {
-            $company->hireCandidate($candidateId);
-            // The candidate has been hired.
-            $company->increment('coins', 5);
-            $candidate->save();
-            return response()->json([
-                'message' => 'Mail Sent. Candidate Hired.'
-            ], 200);
+        if ($candidate->hired !== 1) {
+            if ($candidate->contactedby === 1) {
+                $company->hireCandidate($candidateId);
+                // The candidate has been hired.
+                $company->increment('coins', 5);
+                $candidate->save();
+                return response()->json([
+                    'message' => 'Mail Sent. Candidate Hired.'
+                ], 200);
 
-            // Add 5 coins to the total
 
-            //send email
-
+                //send email
+            } else {
+                return response()->json([
+                    'message' => 'Error: You have not contacted this candidate yet!'
+                ], 200);
+            }
 
         } else {
             return response()->json([
-                'message' => 'Error: You have not contacted this candidate yet!'
+                'message' => 'Error: This candidate is already hired!'
             ], 200);
             // The candidate has not been hired.
         }
