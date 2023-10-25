@@ -53,7 +53,7 @@ class CandidateController extends Controller
             // You can redirect or show an error message
             return response()->json([
                 'message' => 'Insufficient funds.'
-            ], 200);
+            ]);
 
         }
 
