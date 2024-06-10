@@ -33,10 +33,10 @@
 
 <div id="app">
 
-    <div class="w-full p-6 bg-teal-100 text-right font-bold">Your wallet has: {{$coins ?? '?' }} coins</div>
+   <div class="w-full p-6 bg-teal-100 text-right font-bold"> {{--Your wallet has: {{$coins ?? '?' }}  --}} Contact and Hire Candidates</div>
 
 
-    <candidates :candidates="{{ json_encode($candidates) }}">
+    <candidates :candidates="{{ json_encode($candidates) }}" :coins="{{json_encode($coins) }}">
     </candidates>
 </div>
 

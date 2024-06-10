@@ -1,4 +1,10 @@
+php artisan generate:key
+php artisan migrate
+php artisan db:seed
+
+
 # Step 1 — Install WSL 2
+
 WSL2 (Windows Subsystem for Linux version 2) is a new version of the architecture that allows you to use Linux on top of Windows 10 natively (using a lightweight virtual machine) and replaces WSL.
 
 The feature runs an actual Linux kernel in this new version, which improves performance and app compatibility over the previous version while maintaining the same experience as the first release.

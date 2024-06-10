@@ -21,4 +21,5 @@ Route::get('/', function () {
 Route::get('candidates-list', [CandidateController::class, 'index'])->name('candidates.index');
 Route::post('candidates-contact/{candidateId}', [CandidateController::class, 'contact']);
 Route::post('/candidates-hire/{candidateId}', [CandidateController::class, 'hire'])->name('candidates.hire');
+Route::get('/coins', [CandidateController::class, 'coins'])->name('coins');
 
