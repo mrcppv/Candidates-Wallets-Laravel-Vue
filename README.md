@@ -3,6 +3,9 @@ php artisan migrate
 php artisan db:seed
 
 
+vue2.6
+
+
 # Step 1 — Install WSL 2
 
 WSL2 (Windows Subsystem for Linux version 2) is a new version of the architecture that allows you to use Linux on top of Windows 10 natively (using a lightweight virtual machine) and replaces WSL.

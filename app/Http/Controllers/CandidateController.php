@@ -26,7 +26,10 @@ class CandidateController extends Controller
 
         if ($coins >= 5) {
             if ($contactedby == 1) {
-                return response()->json(['message' => 'Error: You have already contacted this candidate!'], 200);
+                return response()->json([
+                    'message' => 'Error: You have already contacted this candidate!',
+                    'coins' => $company->coins // Send updated coins value to the client
+                ], 200);
             } else {
                 $company->increment('coins', 5);
                 $candidate->contactedby = 1;
@@ -34,10 +37,18 @@ class CandidateController extends Controller
 
                 // Mail::to($candidate->email)->send(new CandidateContacted($candidate));
 
-                return response()->json(['message' => 'Mail Sent. Candidate Contacted.'], 200);
+                return response()->json([
+                    'message' => 'Mail Sent. Candidate Contacted.',
+                    'coins' => $company->coins // Send updated coins value to the client
+
+                ], 200);
             }
         } else {
-            return response()->json(['message' => 'Insufficient funds.']);
+            return response()->json([
+                'message' => 'Insufficient funds.',
+                'coins' => $company->coins // Send updated coins value to the client
+
+            ]);
         }
     }
 
@@ -71,10 +82,16 @@ class CandidateController extends Controller
                     'coins' => $company->coins // Send updated coins value to the client
                 ], 200);
             } else {
-                return response()->json(['message' => 'Error: You have not contacted this candidate yet!'], 200);
+                return response()->json([
+                    'message' => 'Error: You have not contacted this candidate yet!',
+                    'coins' => $company->coins // Send updated coins value to the client
+                ], 200);
             }
         } else {
-            return response()->json(['message' => 'Error: This candidate is already hired!'], 200);
+            return response()->json([
+                'message' => 'Error: This candidate is already hired!',
+                'coins' => $company->coins // Send updated coins value to the client
+            ], 200);
         }
     }
 }

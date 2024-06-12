@@ -44,6 +44,7 @@
 <script>
 import axios from 'axios';
 import MvpCandidates from './MvpCandidates.vue';
+import Swal from 'sweetalert2';
 
 
 
@@ -80,7 +81,7 @@ export default {
           .then(response => {
             const message = response.data.message;
             const coins = response.data.coins; // Assuming 'coins' is returned from the server
-            this.toast.success(message); // Display success message
+            this.showNotification(message);          // Display success message
             this.coins = coins; // Update coins in the component
 
           })
@@ -93,7 +94,12 @@ export default {
     contactCandidate(candidateId) {
       axios.post(`/candidates-contact/${candidateId}`)
           .then(response => {
-            alert(response.data.message);
+            const message = response.data.message;
+            const coins = response.data.coins; // Assuming 'coins' is returned from the server
+
+            this.showNotification(message);
+            this.coins = coins; // Update coins in the component
+
             // No need to reload the window
           });
     },
@@ -108,10 +114,7 @@ export default {
       // return JSON.parse(candidate.strengths).includes('Wordpress');
     },
 
-    flashMessage(message) {
-      // Implement your flash message logic here
-      alert(message); // Simple alert for demonstration; use a better UI component in production
-    },
+
 
     fetchCoins() {
       axios.get('/coins')
@@ -142,6 +145,19 @@ export default {
         this.desiredSkills.splice(index, 1);
       }
     },
+    showNotification(message) {
+      Swal.fire({
+        title: message,
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 3000 // Display duration in milliseconds
+      });
+    },
+
+
+
+
   },
 }
 </script>
